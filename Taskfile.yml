@@ -1,0 +1,7 @@
+# https://taskfile.dev/usage/
+version: "3"
+tasks:
+  dev: bun run dev
+  build: bun vite build --emptyOutDir
+  build2: bun run build
+  pre: bun run preview

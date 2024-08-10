@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Slink Collector",
+  "version": "1.0.0",
+  "description": "A Chrome extension to collect URLs",
+  "permissions": ["storage", "tabs"],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

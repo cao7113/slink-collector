@@ -1,0 +1,20 @@
+{
+  "name": "slink-collector",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "tsc && vite build",
+    "preview": "vite preview --open"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.269",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.10",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.8",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4"
+  }
+}
