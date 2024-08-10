@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Show config info
+  chrome.storage.sync.get('configs', (data) => {
+    const activeConfig = data.configs?.find((config: any) => config.isActive);
+    if (!activeConfig) {
+      alert('No active configuration found!');
+      return;
+    }
+    (document.getElementById('configInfo') as HTMLDivElement).innerHTML = `
+    <div class="text-red-300">
+    Remote API: ${activeConfig.apiUrl}
+    </div>
+    <div class="text-green-200">
+    Note: ${activeConfig.note || '-'}
+    </div>
+    `
+  });
+
+  // set extension options link
+  // chrome-extension://mfkadgfffcilleioicojholjblemhdne/options.html
+  (document.getElementById('optionsLink') as HTMLAnchorElement).href = `chrome-extension://${chrome.runtime.id}/options.html`
+
   // 填充当前标签页的信息
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const currentTab = tabs[0];
@@ -26,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${activeConfig.bearerToken}`
+          'Authorization': `Bearer ${activeConfig.bearerToken} `
         },
         body: JSON.stringify({ link: { url, title, note, tags } })
       })
@@ -34,13 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
           const flashMessage = document.getElementById('flashMessage') as HTMLElement;
           flashMessage.classList.remove('hidden');
-          flashMessage.textContent = `Page submitted successfully! ID: ${data.id}`;
+          flashMessage.textContent = `Page submitted successfully! ID: ${data.id} `;
         })
         .catch(error => {
           console.error('Error:', error);
           const flashMessage = document.getElementById('flashMessage') as HTMLElement;
           flashMessage.classList.remove('hidden');
-          flashMessage.textContent = `Error submitting page: ${error.message}`;
+          flashMessage.textContent = `Error submitting page: ${error.message} `;
         });
     });
   });

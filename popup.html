@@ -9,28 +9,35 @@
 </head>
 
 <body class="p-4 bg-white dark:bg-gray-900">
-  <form id="submissionForm" class="space-y-4">
-    <div>
-      <label class="block text-gray-700 dark:text-gray-300" for="url">URL:</label>
-      <input type="text" id="url" class="input input-bordered w-full" readonly>
-    </div>
-    <div>
-      <label class="block text-gray-700 dark:text-gray-300" for="title">Title:</label>
-      <input type="text" id="title" class="input input-bordered w-full" readonly>
-    </div>
-    <div>
-      <label class="block text-gray-700 dark:text-gray-300" for="note">Note:</label>
-      <input type="text" id="note" class="input input-bordered w-full">
-    </div>
-    <div>
-      <label class="block text-gray-700 dark:text-gray-300" for="tags">Tags:</label>
-      <input type="text" id="tags" class="input input-bordered w-full">
-    </div>
-    <div class="flex space-x-4 mt-4">
-      <button id="submitBtn" class="btn btn-primary">Submit</button>
-    </div>
-    <div id="flashMessage" class="mt-4 hidden text-green-500">Page submitted successfully!</div>
-  </form>
+  <div id="configInfo" class="bg-slate-200 m-4 border-dashed">
+  </div>
+  <div id="collect">
+    <form id="submissionForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 dark:text-gray-300" for="url">URL:</label>
+        <input type="text" id="url" class="input input-bordered w-full" readonly>
+      </div>
+      <div>
+        <label class="block text-gray-700 dark:text-gray-300" for="title">Title:</label>
+        <input type="text" id="title" class="input input-bordered w-full" readonly>
+      </div>
+      <div>
+        <label class="block text-gray-700 dark:text-gray-300" for="note">Note:</label>
+        <input type="text" id="note" class="input input-bordered w-full">
+      </div>
+      <div>
+        <label class="block text-gray-700 dark:text-gray-300" for="tags">Tags:</label>
+        <input type="text" id="tags" class="input input-bordered w-full">
+      </div>
+      <div class="flex space-x-4 mt-4">
+        <button id="submitBtn" class="btn btn-primary">Submit</button>
+      </div>
+      <div id="flashMessage" class="mt-4 hidden text-green-500">Page submitted successfully!</div>
+    </form>
+  </div>
+  <div class="bg-slate-400">
+    <a id="optionsLink" href="#" target="_blank">Options Page</a>
+  </div>
 
   <script type="module" src="/src/popup.ts"></script>
 </body>

@@ -2,6 +2,18 @@
 version: "3"
 tasks:
   dev: bun run dev
-  build: bun vite build --emptyOutDir
+  build:
+    aliases:
+      - pkg
+    cmds:
+      - bun vite build --emptyOutDir
   build2: bun run build
   pre: bun run preview
+
+  ## Setup
+  # install bun as https://github.com/cao7113/hello-bun/blob/main/Taskfile.yml#L28
+  install: bun install
+
+  # bun create vite slink-collector --template vanilla-ts
+  # bun add -d @types/chrome tailwindcss postcss autoprefixer daisyui
+  # bun tailwindcss init --postcss --esm --ts
