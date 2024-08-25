@@ -8,18 +8,22 @@
   <link href="/src/style.css" rel="stylesheet">
 </head>
 
-<body class="p-4 bg-white dark:bg-gray-900">
-  <div id="configForm" class="space-y-4">
+<body class="p-4 bg-gray-200 dark:bg-gray-900">
+  <div>
+    <h2 class="text-lg text-center">Slink Options</h2>
+  </div>
+
+  <div id="configForm" class="max-w-screen-lg min-w-[640px] mx-auto space-y-4">
     <div>
-      <label class="block text-gray-700 dark:text-gray-300">API URL:</label>
+      <label class="block text-gray-700 dark:text-gray-300">API URL</label>
       <input type="text" id="apiUrl" class="input input-bordered w-full" value="http://localhost:4000/api/links">
     </div>
     <div>
-      <label class="block text-gray-700 dark:text-gray-300">Bearer Token:</label>
+      <label class="block text-gray-700 dark:text-gray-300">Bearer Token</label>
       <input type="text" id="bearerToken" class="input input-bordered w-full">
     </div>
     <div>
-      <label class="block text-gray-700 dark:text-gray-300">Note (Optional):</label>
+      <label class="block text-gray-700 dark:text-gray-300">Note (Optional)</label>
       <input type="text" id="note" class="input input-bordered w-full">
     </div>
     <div class="flex space-x-4">
@@ -28,10 +32,11 @@
     </div>
   </div>
 
-  <div id="flashMessage" class="mt-4 hidden text-green-500">Configuration added successfully!</div>
+  <div id="flashMessage" class="max-w-screen-lg min-w-[640px] mx-auto mt-4 hidden text-green-500">
+    Configuration added successfully!
+  </div>
 
-  <!-- configList 用于显示保存的配置，并支持拖动排序 -->
-  <div id="configList" class="mt-8 space-y-4"></div>
+  <div id="configList" class="max-w-screen-lg min-w-[640px] mx-auto mt-4 space-y-4"></div>
 
   <script type="module" src="/src/options.ts"></script>
 </body>

@@ -7,17 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     (document.getElementById('configInfo') as HTMLDivElement).innerHTML = `
-    <div class="text-red-300">
-    Remote API: ${activeConfig.apiUrl}
-    </div>
-    <div class="text-green-200">
-    Note: ${activeConfig.note || '-'}
-    </div>
+      <div class="text-red-400">
+        Remote API: ${activeConfig.apiUrl}
+      </div>
+      <div class="text-blue-400">
+        Note: ${activeConfig.note || '-'}
+      </div>
     `
   });
 
-  // set extension options link
-  // chrome-extension://mfkadgfffcilleioicojholjblemhdne/options.html
+  // set extension options link like: chrome-extension://mfkadgfffcilleioicojholjblemhdne/options.html
   (document.getElementById('optionsLink') as HTMLAnchorElement).href = `chrome-extension://${chrome.runtime.id}/options.html`
 
   // 填充当前标签页的信息

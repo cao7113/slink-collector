@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite --open popup.html",
+    "opts": "vite --open options.html",
     "build": "tsc && vite build",
     "preview": "vite preview --open"
   },

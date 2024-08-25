@@ -43,47 +43,18 @@ chrome.commands.onCommand.addListener((command, tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             func: alertLinkAdded,
-            args: [command, tab.url],
+            args: [tab.url],
           });
         })
         .catch(error => {
           console.error('Error:', error);
         });
     });
-
-
-    // fetch(url, {
-    //   method: "POST",
-    //   body: JSON.stringify({ link: link_obj }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => {
-    //     // indicates whether the response is successful (status code 200-299) or not
-    //     // if (!response.ok) {
-    //     //   throw new Error(`Request failed with status ${reponse.status}`);
-    //     // }
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(
-    //       `"${tab.url}" added with response: ${JSON.stringify(data)}`
-    //     );
-    //     chrome.scripting.executeScript({
-    //       target: { tabId: tab.id },
-    //       func: alertLinkAdded,
-    //       args: [command, tab.url],
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
 });
 
-function alertLinkAdded(name: string, url: string) {
-  alert(`"${url}" collected by ${name} command!`);
+function alertLinkAdded(url: string) {
+  alert(`"${url}" collected!`);
 }
 
 chrome.runtime.onInstalled.addListener((reason) => {
