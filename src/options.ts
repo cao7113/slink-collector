@@ -6,7 +6,7 @@ interface Config {
 }
 
 function saveConfig(config: Config, callback: () => void) {
-  chrome.storage.sync.get('configs', (data) => {
+  chrome.storage.sync.get("configs", (data) => {
     const configs: Config[] = data.configs || [];
     configs.push(config);
     chrome.storage.sync.set({ configs }, callback);
@@ -18,7 +18,7 @@ function updateConfigList(newConfigs: Config[], callback?: () => void) {
 }
 
 function deleteConfig(index: number, callback: () => void) {
-  chrome.storage.sync.get('configs', (data) => {
+  chrome.storage.sync.get("configs", (data) => {
     const configs: Config[] = data.configs || [];
     configs.splice(index, 1);
     chrome.storage.sync.set({ configs }, callback);
@@ -26,7 +26,7 @@ function deleteConfig(index: number, callback: () => void) {
 }
 
 function setActiveConfig(index: number) {
-  chrome.storage.sync.get('configs', (data) => {
+  chrome.storage.sync.get("configs", (data) => {
     const configs: Config[] = data.configs || [];
     configs.forEach((config, i) => {
       config.isActive = i === index;
@@ -36,28 +36,32 @@ function setActiveConfig(index: number) {
 }
 
 function renderConfigList() {
-  chrome.storage.sync.get('configs', (data) => {
+  chrome.storage.sync.get("configs", (data) => {
     const configs: Config[] = data.configs || [];
-    const configList = document.getElementById('configList') as HTMLElement;
-    configList.innerHTML = '';
+    const configList = document.getElementById("configList") as HTMLElement;
+    configList.innerHTML = "";
 
     configs.forEach((config, index) => {
-      const listItem = document.createElement('div');
-      listItem.className = 'p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg flex justify-between items-center cursor-move';
+      const listItem = document.createElement("div");
+      listItem.className =
+        "p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg flex justify-between items-center cursor-move";
       listItem.draggable = true;
       listItem.dataset.index = index.toString();
 
-      listItem.addEventListener('dragstart', (e) => {
-        e.dataTransfer?.setData('text/plain', index.toString());
+      listItem.addEventListener("dragstart", (e) => {
+        e.dataTransfer?.setData("text/plain", index.toString());
       });
 
-      listItem.addEventListener('dragover', (e) => {
+      listItem.addEventListener("dragover", (e) => {
         e.preventDefault();
       });
 
-      listItem.addEventListener('drop', (e) => {
+      listItem.addEventListener("drop", (e) => {
         e.preventDefault();
-        const draggedIndex = parseInt(e.dataTransfer?.getData('text/plain') || '-1', 10);
+        const draggedIndex = parseInt(
+          e.dataTransfer?.getData("text/plain") || "-1",
+          10
+        );
         if (draggedIndex !== index) {
           const temp = configs[draggedIndex];
           configs[draggedIndex] = configs[index];
@@ -66,40 +70,48 @@ function renderConfigList() {
         }
       });
 
-      const apiUrl = document.createElement('div');
+      const apiUrl = document.createElement("div");
       apiUrl.textContent = `API URL: ${config.apiUrl}`;
       listItem.appendChild(apiUrl);
 
-      const bearerToken = document.createElement('div');
-      bearerToken.textContent = `Bearer Token: ${config.bearerToken.slice(0, config.bearerToken.length / 2)}****`;
+      const bearerToken = document.createElement("div");
+      bearerToken.textContent = `Bearer Token: ${config.bearerToken.slice(
+        0,
+        config.bearerToken.length / 2
+      )}****`;
       listItem.appendChild(bearerToken);
 
-      const note = document.createElement('div');
-      note.textContent = `Note: ${config.note || ''}`;
+      const note = document.createElement("div");
+      note.textContent = `Note: ${config.note || ""}`;
       listItem.appendChild(note);
 
-      const buttonsDiv = document.createElement('div');
-      buttonsDiv.className = 'space-x-2 flex items-center';
+      const buttonsDiv = document.createElement("div");
+      buttonsDiv.className = "space-x-2 flex items-center";
 
-      const setActiveButton = document.createElement('button');
-      setActiveButton.textContent = config.isActive ? 'Active' : 'Set Active';
-      setActiveButton.className = config.isActive ? 'btn btn-primary' : 'btn';
-      setActiveButton.addEventListener('click', () => setActiveConfig(index));
+      const setActiveButton = document.createElement("button");
+      setActiveButton.textContent = config.isActive ? "Active" : "Set Active";
+      setActiveButton.className = config.isActive ? "btn btn-primary" : "btn";
+      setActiveButton.addEventListener("click", () => setActiveConfig(index));
       buttonsDiv.appendChild(setActiveButton);
 
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.className = 'btn btn-error';
-      deleteButton.addEventListener('click', () => deleteConfig(index, renderConfigList));
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.className = "btn btn-error";
+      deleteButton.addEventListener("click", () =>
+        deleteConfig(index, renderConfigList)
+      );
       buttonsDiv.appendChild(deleteButton);
 
-      const cloneButton = document.createElement('button');
-      cloneButton.textContent = 'Fork';
-      cloneButton.className = 'btn btn-secondary';
-      cloneButton.addEventListener('click', () => {
-        (document.getElementById('apiUrl') as HTMLInputElement).value = config.apiUrl;
-        (document.getElementById('bearerToken') as HTMLInputElement).value = config.bearerToken;
-        (document.getElementById('note') as HTMLInputElement).value = config.note || '';
+      const cloneButton = document.createElement("button");
+      cloneButton.textContent = "Fork";
+      cloneButton.className = "btn btn-secondary";
+      cloneButton.addEventListener("click", () => {
+        (document.getElementById("apiUrl") as HTMLInputElement).value =
+          config.apiUrl;
+        (document.getElementById("bearerToken") as HTMLInputElement).value =
+          config.bearerToken;
+        (document.getElementById("note") as HTMLInputElement).value =
+          config.note || "";
       });
       buttonsDiv.appendChild(cloneButton);
 
@@ -109,10 +121,12 @@ function renderConfigList() {
   });
 }
 
-document.getElementById('submitBtn')?.addEventListener('click', () => {
-  const apiUrl = (document.getElementById('apiUrl') as HTMLInputElement).value;
-  const bearerToken = (document.getElementById('bearerToken') as HTMLInputElement).value;
-  const note = (document.getElementById('note') as HTMLInputElement).value;
+document.getElementById("submitBtn")?.addEventListener("click", () => {
+  const apiUrl = (document.getElementById("apiUrl") as HTMLInputElement).value;
+  const bearerToken = (
+    document.getElementById("bearerToken") as HTMLInputElement
+  ).value;
+  const note = (document.getElementById("note") as HTMLInputElement).value;
 
   const config: Config = {
     apiUrl,
@@ -123,22 +137,28 @@ document.getElementById('submitBtn')?.addEventListener('click', () => {
 
   saveConfig(config, () => {
     renderConfigList();
-    (document.getElementById('flashMessage') as HTMLElement).classList.remove('hidden');
+    (document.getElementById("flashMessage") as HTMLElement).classList.remove(
+      "hidden"
+    );
     setTimeout(() => {
-      (document.getElementById('flashMessage') as HTMLElement).classList.add('hidden');
+      (document.getElementById("flashMessage") as HTMLElement).classList.add(
+        "hidden"
+      );
     }, 3000);
   });
 
-  (document.getElementById('apiUrl') as HTMLInputElement).value = 'http://localhost:4000/api/links';
-  (document.getElementById('bearerToken') as HTMLInputElement).value = '';
-  (document.getElementById('note') as HTMLInputElement).value = '';
+  (document.getElementById("apiUrl") as HTMLInputElement).value =
+    "http://localhost:4000/api/links";
+  (document.getElementById("bearerToken") as HTMLInputElement).value = "";
+  (document.getElementById("note") as HTMLInputElement).value = "";
 });
 
-document.getElementById('resetBtn')?.addEventListener('click', () => {
-  (document.getElementById('apiUrl') as HTMLInputElement).value = 'http://localhost:4000/api/links';
-  (document.getElementById('bearerToken') as HTMLInputElement).value = '';
-  (document.getElementById('note') as HTMLInputElement).value = '';
+document.getElementById("resetBtn")?.addEventListener("click", () => {
+  (document.getElementById("apiUrl") as HTMLInputElement).value =
+    "http://localhost:4000/api/links";
+  (document.getElementById("bearerToken") as HTMLInputElement).value = "";
+  (document.getElementById("note") as HTMLInputElement).value = "";
 });
 
 // Initialize config list on page load
-document.addEventListener('DOMContentLoaded', renderConfigList);
+document.addEventListener("DOMContentLoaded", renderConfigList);
