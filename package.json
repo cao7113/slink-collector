@@ -7,7 +7,7 @@
     "dev": "vite --open popup.html",
     "opts": "vite --open options.html",
     "build": "tsc && vite build",
-    "preview": "vite preview --open"
+    "preview": "vite preview --host --open"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.269",
