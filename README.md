@@ -14,6 +14,8 @@ Load the extension in Chrome:
 
 Note: After building, the extension must be reloaded.
 
+- https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked
+
 ## Stack upgrade
 
 Vite + Bun + Preact (或者 SolidJS)
