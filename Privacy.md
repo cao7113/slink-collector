@@ -36,4 +36,4 @@ We may update our Privacy Policy from time to time. We will notify you of any ch
 
 ## 7. Contact Us
 If you have any questions or suggestions about this Privacy Policy, please contact us at:
-- **Email:** cao7113+wbs@gmail.com
+- **Email:** cao7113+cws@gmail.com
