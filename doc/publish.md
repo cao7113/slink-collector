@@ -2,6 +2,7 @@
 
 - https://developer.chrome.com/docs/webstore/prepare
 - https://developer.chrome.com/docs/webstore
+- https://chrome.google.com/webstore/devconsole
 
 ## icons
 

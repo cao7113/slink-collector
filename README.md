@@ -1,6 +1,14 @@
 # Slink Collector - Chrome Extension for slink service
 
-## Get started
+## Usage
+
+- Register and create API token from https://slink.fly.dev
+- Configure api-entry from Options Page
+  - API URL: https://slink.fly.dev/api/user_links/collect
+  - Bear Token: xxx-your-api-token
+  - Note: happy slink
+
+## Develop
 
 run `bun vite build` to generate the `dist` directory.
 
